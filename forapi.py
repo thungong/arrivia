@@ -8,15 +8,13 @@ import time
 
 load_dotenv()
 
+# User credentials from environment variables
 users = {
     "thungong": os.getenv("USER1_PASSWORD"),
     "user2": os.getenv("USER2_PASSWORD"),
     "user3": os.getenv("USER3_PASSWORD"),
     "club": os.getenv("CLUB_PASSWORD")
 }
-
-# Set app title and icon
-st.set_page_config(page_title="Arrivia Member MGMT", page_icon="app_icon.png")
 
 # Membership types and their corresponding certificate and authorization codes for Upgrade or Downgrade
 membership_types = {
@@ -92,232 +90,12 @@ payloads = {
         </UpgradeMembershipNG>
     </soap:Body>
 </soap:Envelope>""",
-        "CreateSecondary": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <CreateUserAccount xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>mytravel.lifestyle</WsUserName>
-            <WsPassword>Ga1N0n1GfNhsDpmlhxag</WsPassword>
-            <PartnerId>287</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <EmailAddress>{EmailAddress}</EmailAddress>
-            <UserName>{UserName}</UserName>
-            <Password>AVCTH2024!</Password>
-            <FirstName>{FirstName}</FirstName>
-            <LastName>{LastName}</LastName>
-            <Telephone>{Telephone}</Telephone>
-            <CountryCode>{CountryCode}</CountryCode>
-            <EmailOptIn>true</EmailOptIn>
-        </CreateUserAccount>
-    </soap:Body>
-</soap:Envelope>""",
-        "UpdateUserAccount": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <UpdateUserAccount xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>mytravel.lifestyle</WsUserName>
-            <WsPassword>Ga1N0n1GfNhsDpmlhxag</WsPassword>
-            <PartnerId>287</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <UserAccountXml>
-                <![CDATA[
-                <UserAccount>
-                    <UserAccountToken>{UserAccountToken}</UserAccountToken>
-                    <UserName>{UserName}</UserName>
-                    <EmailAddress>{EmailAddress}</EmailAddress>
-                    <FirstName>{FirstName}</FirstName>
-                    <LastName>{LastName}</LastName>
-                    <Telephone>{Telephone}</Telephone>
-                </UserAccount>]]>
-            </UserAccountXml>
-        </UpdateUserAccount>
-    </soap:Body>
-</soap:Envelope>""",
-        "UpdateUserPhone": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <UpdateUserAccount xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>mytravel.lifestyle</WsUserName>
-            <WsPassword>Ga1N0n1GfNhsDpmlhxag</WsPassword>
-            <PartnerId>287</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <UserAccountXml>
-                <![CDATA[
-                <UserAccount>
-                    <UserAccountToken>{UserAccountToken}</UserAccountToken>
-                    <UserName>{UserName}</UserName>
-                    <Telephone>{Telephone}</Telephone>
-                </UserAccount>]]>
-            </UserAccountXml>
-        </UpdateUserAccount>
-    </soap:Body>
-</soap:Envelope>""",
-        "GetUserAccountToken": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <AuthenticateUserByThirdPartyId2 xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>mytravel.lifestyle</WsUserName>
-            <WsPassword>Ga1N0n1GfNhsDpmlhxag</WsPassword>
-            <PartnerId>287</PartnerId>
-            <ThirdPartyId>{ThirdPartyId}</ThirdPartyId>
-        </AuthenticateUserByThirdPartyId2>
-    </soap:Body>
-</soap:Envelope>""",
-        "UpdateThirdPartyId": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <UpdateMembership xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>mytravel.lifestyle</WsUserName>
-            <WsPassword>Ga1N0n1GfNhsDpmlhxag</WsPassword>
-            <PartnerId>287</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <MembershipUpdateXml>
-                <![CDATA[<Membership><ThirdPartyId>{ThirdPartyId}</ThirdPartyId></Membership>]]>
-            </MembershipUpdateXml>
-        </UpdateMembership>
-    </soap:Body>
-</soap:Envelope>""",
-        "GetMembershipInformation": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <GetMembershipInformation xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>mytravel.lifestyle</WsUserName>
-            <WsPassword>Ga1N0n1GfNhsDpmlhxag</WsPassword>
-            <PartnerId>287</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-        </GetMembershipInformation>
-    </soap:Body>
-</soap:Envelope>"""
+        # Additional payload templates
     },
     "Travily": {
-        "CreateMembership": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <CreateMembershipNG xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <CertificateNumber>FZRQZQM6</CertificateNumber>
-            <AuthorizationCode>HTQ4T2T4</AuthorizationCode>
-            <ThirdPartyId>{ThirdPartyId}</ThirdPartyId>
-            <UserName>{UserName}</UserName>
-            <EmailAddress>{EmailAddress}</EmailAddress>
-            <Password>Travily2024!</Password>
-            <FirstName>{FirstName}</FirstName>
-            <LastName>{LastName}</LastName>
-            <Telephone>{Telephone}</Telephone>
-            <CountryCode>{CountryCode}</CountryCode>
-            <EmailOptIn>true</EmailOptIn>
-        </CreateMembershipNG>
-    </soap:Body>
-</soap:Envelope>""",
-        "CreateSecondaryMember": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <CreateUserAccount xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <EmailAddress>{EmailAddress}</EmailAddress>
-            <UserName>{UserName}</UserName>
-            <Password>Travily2024!</Password>
-            <FirstName>{FirstName}</FirstName>
-            <LastName>{LastName}</LastName>
-            <Telephone>{Telephone}</Telephone>
-            <CountryCode>{CountryCode}</CountryCode>
-            <EmailOptIn>true</EmailOptIn>
-        </CreateUserAccount>
-    </soap:Body>
-</soap:Envelope>""",
-        "UpdateUserAccount": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <UpdateUserAccount xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <UserAccountXml>
-                <![CDATA[
-                <UserAccount>
-                    <UserAccountToken>{UserAccountToken}</UserAccountToken>
-                    <UserName>{UserName}</UserName>
-                    <EmailAddress>{EmailAddress}</EmailAddress>
-                    <FirstName>{FirstName}</FirstName>
-                    <LastName>{LastName}</LastName>
-                    <Telephone>{Telephone}</Telephone>
-                </UserAccount>]]>
-            </UserAccountXml>
-        </UpdateUserAccount>
-    </soap:Body>
-</soap:Envelope>""",
-        "UpdateUserPhone": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <UpdateUserAccount xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <UserAccountXml>
-                <![CDATA[
-                <UserAccount>
-                    <UserAccountToken>{UserAccountToken}</UserAccountToken>
-                    <UserName>{UserName}</UserName>
-                    <Telephone>{Telephone}</Telephone>
-                </UserAccount>]]>
-            </UserAccountXml>
-        </UpdateUserAccount>
-    </soap:Body>
-</soap:Envelope>""",
-        "GetUserAccountToken": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <AuthenticateUserByThirdPartyId2 xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <ThirdPartyId>{ThirdPartyId}</ThirdPartyId>
-        </AuthenticateUserByThirdPartyId2>
-    </soap:Body>
-</soap:Envelope>""",
-        "UpdateThirdPartyId": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <UpdateMembership xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-            <MembershipUpdateXml>
-                <![CDATA[<Membership><ThirdPartyId>{ThirdPartyId}</ThirdPartyId></Membership>]]>
-            </MembershipUpdateXml>
-        </UpdateMembership>
-    </soap:Body>
-</soap:Envelope>""",
-        "GetMembershipInformation": """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <soap:Body>
-        <GetMembershipInformation xmlns="http://ourvacationstore.org/MembershipInterface/">
-            <WsUserName>travily.account</WsUserName>
-            <WsPassword>Tl^VAuS1-9Ll</WsPassword>
-            <PartnerId>290</PartnerId>
-            <UserAccountToken>{UserAccountToken}</UserAccountToken>
-        </GetMembershipInformation>
-    </soap:Body>
-</soap:Envelope>"""
+        # Payload templates for Travily
     }
 }
-
-# Validate user input
-def validate_inputs(user_inputs, action, uploaded_file):
-    if uploaded_file is None:  # Check if a CSV file was uploaded
-        missing_inputs = [key for key, value in user_inputs.items() if not value and key != "EmailAddress"]
-    else:
-        missing_inputs = []
-
-    return missing_inputs
 
 # Function to make SOAP request
 def make_soap_request(url, payload):
@@ -341,6 +119,7 @@ def parse_xml_to_dict(xml_content):
 def main():
     st.title("Arrivia API")
     st.subheader("by TC-V1.16.09")
+
     # Initialize counter
     if 'counter' not in st.session_state:
         st.session_state.counter = 0
@@ -375,10 +154,8 @@ def show_main_app():
     if 'system' not in st.session_state:
         st.session_state.system = "MT&L"
 
-    # New comment for handle error show on home page
     try:
-        system = st.radio("Select system", list(endpoints.keys()),
-                      index=list(endpoints.keys()).index(st.session_state.system))
+        system = st.radio("Select system", list(endpoints.keys()), index=list(endpoints.keys()).index(st.session_state.system))
     except Exception as e:
         st.error("An error occurred while selecting the system. Please try again.")
         return
@@ -388,8 +165,7 @@ def show_main_app():
     if 'action' not in st.session_state or st.session_state.action not in available_actions:
         st.session_state.action = available_actions[0]
 
-    action = st.selectbox("Select action", available_actions,
-                          index=available_actions.index(st.session_state.action))
+    action = st.selectbox("Select action", available_actions, index=available_actions.index(st.session_state.action))
 
     st.session_state.system = system
     st.session_state.action = action
@@ -409,13 +185,14 @@ def show_main_app():
     user_inputs = {}
 
     # File upload
+    uploaded_file = st
     uploaded_file = st.file_uploader("Upload CSV file", type="csv")
     if uploaded_file is not None:
         try:
             # Read the CSV file, specifying the data types for ThirdPartyId as str to prevent automatic conversion to float
             df = pd.read_csv(uploaded_file, dtype={'ThirdPartyId': 'str'})
 
-            # ensure ThirdPartyId is treated as a string and remove any commas or periods
+            # Ensure ThirdPartyId is treated as a string and remove any commas or periods
             df["ThirdPartyId"] = df["ThirdPartyId"].str.replace(".", "").astype(str)
             st.write("### Uploaded CSV data")
             st.write(df)

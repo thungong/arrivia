@@ -1,15 +1,14 @@
 import streamlit as st
-import mtlcsv
-import travilycsv
-import forapi
+import subprocess
 
-# Set app title and icon
+# Set app title and icon here only once
 st.set_page_config(page_title="Member MGMT", page_icon="app_icon.png")
 
-# Apply custom CSS for the background and text color
-corporate_bg_color = "#003366"
-text_color = "white"
+# Define corporate background color and text color
+corporate_bg_color = "#003366"  
+text_color = "white"  
 
+# Apply custom CSS for the background and text color
 st.markdown(
     f"""
     <style>
@@ -36,7 +35,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Streamlit app
 st.title("CSV Preparation Tool - Version 2")
+
+# Main menu
+st.header("Select the Data Transformation Tool")
 
 option = st.selectbox(
     "Choose the tool you need:",
@@ -44,13 +47,19 @@ option = st.selectbox(
 )
 
 if option == "MT&L CSV Preparation":
-    mtlcsv.run()
+    st.write("You have selected the MT&L CSV Preparation tool.")
+    if st.button("Go to MT&L CSV Preparation"):
+        subprocess.run(["streamlit", "run", "mtlcsv.py"])
 
 elif option == "Travily CSV Preparation":
-    travilycsv.run()
+    st.write("You have selected the Travily CSV Preparation tool.")
+    if st.button("Go to Travily CSV Preparation"):
+        subprocess.run(["streamlit", "run", "travilycsv.py"])
 
 elif option == "Creation API":
-    forapi.run()
+    st.write("You have selected the Creation API tool.")
+    if st.button("Go to Creation API"):
+        subprocess.run(["streamlit", "run", "forapi.py"])
 
 else:
     st.info("Please select a tool to proceed.")

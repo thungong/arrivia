@@ -1,11 +1,9 @@
 import streamlit as st
 import pandas as pd
 
-# Set app title and icon
-st.set_page_config(page_title="Travily CSV", page_icon="app_icon.png")
+# Remove st.set_page_config here as it is already defined in mainmenu.py
 
 # Streamlit app
-#st.set_page_config(page_icon="app_icon.png")
 st.title("Travily Account Creator - V1.29")
 
 # Validate the uploaded file to ensure it has the correct columns for Travily
@@ -82,6 +80,7 @@ def transform_travily_data(df):
     transformed_df = pd.DataFrame(transformed_data)
     return transformed_df
 
+# File upload functionality
 uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx", "xls"])
 
 if uploaded_file:

@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Set app title and icon
-st.set_page_config(page_title="MT&L CSV", page_icon="app_icon.png")
-
 # Streamlit app
 st.title("MT&L Member Account Creator and Upgrader - V1.35")
 
@@ -121,6 +118,7 @@ def transform_upgrade_data(df):
 
     return transformed_df
 
+# File upload functionality
 uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx", "xls"])
 
 if uploaded_file:

@@ -14,3 +14,33 @@ To install the dependencies, ensure you have `Python 3.x` installed, and then ru
 
 ```bash
 pip install -r requirements.txt
+Required Packages
+pandas==2.2.1
+requests==2.31.0
+streamlit==1.33.0
+python-dotenv==1.0.1
+openpyxl==3.1.2
+xlrd==2.0.1
+
+# How to Use
+1. Main Menu
+When you launch the app, you will be prompted to select one of the three available tools:
+
+MT&L CSV Preparation: For creating and preparing MT&L member data CSV files.
+Travily CSV Preparation: For creating and preparing Travily member data CSV files.
+Creation API: For sending SOAP requests to manage member accounts.
+2. MT&L CSV Preparation
+Upload an Excel file containing the required columns.
+Select whether to transform data for primary or secondary members, or perform an upgrade.
+Download the resulting CSV file.
+3. Travily CSV Preparation
+Similar to MT&L, upload an Excel file and select the transformation operation.
+Download the generated CSV file for primary or secondary members.
+4. Creation API
+Log in with your credentials.
+Choose the system (MT&L or Travily) and the action you want to perform.
+You can either input the required fields manually or upload a CSV file.
+Submit the SOAP request and view the responses.
+Running the App
+To run the app, use the following command:
+streamlit run mainmenu.py
