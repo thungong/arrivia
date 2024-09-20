@@ -121,6 +121,7 @@ def transform_upgrade_data(df):
 
     return transformed_df
 
+# File upload functionality
 uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx", "xls"])
 
 if uploaded_file:
