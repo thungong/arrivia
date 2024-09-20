@@ -1,13 +1,13 @@
 import streamlit as st
 
 # Set app title and icon
-st.set_page_config(page_title="Menu: Member MGMT", page_icon="app_icon.png")
+st.set_page_config(page_title="Member Data Management", page_icon="app_icon.png")
 
 # Streamlit app
-st.title("CSV Preparation Tool - Version 2")
+st.title("Member Data Transformation Tools - Version 2")
 
 # Main menu
-st.header("Select the Data Transformation Tool")
+st.header("Select a Data Transformation or API Tool")
 
 option = st.selectbox(
     "Choose the tool you need:",
@@ -29,9 +29,9 @@ elif option == "Travily CSV Preparation":
     )
 
 elif option == "Arrivia API Tool":
-    st.write("You have selected the API Tool.")
+    st.write("You have selected the Arrivia API tool.")
     st.markdown(
-        '[Go to API Tool](https://avcapitool-na6yhruzp7ucyappmjjklt3.streamlit.app/)', 
+        '[Go to Arrivia API Tool](https://avcapitool-na6yhruzp7ucyappmjjklt3.streamlit.app/)', 
         unsafe_allow_html=True
     )
 
