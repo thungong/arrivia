@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 
+# Set app title and icon
+st.set_page_config(page_title="Travily CSV", page_icon="app_icon.png")
+
 # Remove st.set_page_config here as it is already defined in mainmenu.py
 
 # Streamlit app
