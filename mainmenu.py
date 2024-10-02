@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="Member Data Management", page_icon="app_icon.png")
 
 # Streamlit app
-st.title("Member Data Transformation Tools - Version 2")
+st.title("Member Data Transformation Tools - Version 2 -  AeyI Project")
 
 # Main menu
 st.header("Select a Data Transformation or API Tool")
