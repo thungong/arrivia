@@ -1,14 +1,13 @@
 import streamlit as st
-import webbrowser
 
 # Set app title and icon
-st.set_page_config(page_title="Menu: Member MGMT", page_icon="app_icon.png")
+st.set_page_config(page_title="Member Data Management", page_icon="app_icon.png")
 
 # Streamlit app
-st.title("CSV Preparation Tool - Version 2")
+st.title("Member Data Transformation Tools - Version 2 -  AeyI Project")
 
 # Main menu
-st.header("Select the Data Transformation Tool")
+st.header("Select a Data Transformation or API Tool")
 
 option = st.selectbox(
     "Choose the tool you need:",
@@ -17,18 +16,24 @@ option = st.selectbox(
 
 if option == "MT&L CSV Preparation":
     st.write("You have selected the MT&L CSV Preparation tool.")
-    if st.button("Go to MT&L CSV Preparation"):
-        webbrowser.open_new_tab("https://mtlcsv.streamlit.app/")
+    st.markdown(
+        '[Go to MT&L CSV Preparation](https://mtlcsv.streamlit.app/)', 
+        unsafe_allow_html=True
+    )
 
 elif option == "Travily CSV Preparation":
     st.write("You have selected the Travily CSV Preparation tool.")
-    if st.button("Go to Travily CSV Preparation"):
-        webbrowser.open_new_tab("https://travilycsv.streamlit.app/")
+    st.markdown(
+        '[Go to Travily CSV Preparation](https://travilycsv.streamlit.app/)', 
+        unsafe_allow_html=True
+    )
 
 elif option == "Arrivia API Tool":
-    st.write("You have selected the API Tool.")
-    if st.button("Go to API Tool"):
-        webbrowser.open_new_tab("https://avcapitool-na6yhruzp7ucyappmjjklt3.streamlit.app/")
+    st.write("You have selected the Arrivia API tool.")
+    st.markdown(
+        '[Go to Arrivia API Tool](https://avcapitool-na6yhruzp7ucyappmjjklt3.streamlit.app/)', 
+        unsafe_allow_html=True
+    )
 
 else:
     st.info("Please select a tool to proceed.")

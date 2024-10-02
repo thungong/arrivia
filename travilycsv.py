@@ -7,7 +7,7 @@ st.set_page_config(page_title="Travily CSV", page_icon="app_icon.png")
 # Remove st.set_page_config here as it is already defined in mainmenu.py
 
 # Streamlit app
-st.title("Travily Account Creator - V1.29")
+st.title("Travily Account Creator - V1.29 - AeyI Project")
 
 # Validate the uploaded file to ensure it has the correct columns for Travily
 def validate_travily_file(df):

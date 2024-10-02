@@ -5,7 +5,7 @@ import pandas as pd
 st.set_page_config(page_title="MT&L CSV", page_icon="app_icon.png")
 
 # Streamlit app
-st.title("MT&L Member Account Creator and Upgrader - V1.35")
+st.title("MT&L Member Account Creator and Upgrader - V1.35 - AeyI Project")
 
 # Define the correct mapping for Primary Member Creation
 primary_mapping = {
